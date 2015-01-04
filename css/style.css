@@ -43,7 +43,7 @@ body {
 }
 #body > .container {
 	position: relative;
-	margin: 2em 0;
+	margin: 3.5em 0;
 }
 #body > .container #page {
 	position: absolute;
@@ -91,6 +91,9 @@ body {
 	}
 }
 @media (max-width: 720px) {
+	#body > .container {
+		margin: 2em 0;
+	}
 	#body #title {
 		font-size: 3em;
 	}
