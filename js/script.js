@@ -246,7 +246,7 @@ $(#header #logo .bg > div:nth-of-type(1)
 
 
 	$("#page").css({ left: ((1-0)*100)+"%", opacity: 0 });
-	$("#title > .container, #description > .container").css({top: (-100)+"%" });
+	$("#title > .container, #description > .container").css({ top: (-100)+"%" });
 
 	var ele = $("#header");
 	$(ele).css({top: (0-1) * $(ele).height()*1.2 });
