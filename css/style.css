@@ -20,6 +20,14 @@ h6 { font-size: 1.00em; font-weight: normal; }
 	h6 { font-size: 1.0em; }
 }
 
+code {
+	background: rgba(0,0,0,0.25);
+	font-family: "consolas";
+	padding: 5px 10px;
+	margin: 0 -7px;
+}
+
+
 
 body {
 	font-family: monospace;
@@ -53,29 +61,47 @@ body {
 #body > .container #page > .title > h3 {
 	margin: 0 0 0.5em;
 }
-@media (max-width: 720px) {
-	#body {
-		padding: 6em 3em 0;
-	}
+#body #title,
+#body #description {
+	font-weight: normal;
+	line-height: 1.5em;
+	position: relative;
+	overflow: hidden;
+	/*height: 1.5em;*/
 }
-@media (max-width: 480px) {
-	#body {
-		padding: 6em 2em 0;
-	}
+#body #title > .container,
+#body #description > .container {
+	position: relative;
 }
 #body #title {
 	margin: 0.5em 0 0.25em;
-	height: 1.5em;
-	line-height: 1.5em;
-	overflow: hidden;
-	position: relative;
+	font-size: 6em;
+}
+#body #description {
+	font-size: 2em;
+}
+@media (max-width: 960px) {
+	#body #title {
+		font-size: 5em;
+	}
+	#body #description {
+		font-size: 1.5em;
+	}
+}
+@media (max-width: 720px) {
+	#body #title {
+		font-size: 3em;
+	}
+	#body #description {
+		font-size: 1.25em;
+	}
+}
+@media (max-width: 480px) {
+	#body #description {
+		font-size: 1em;
+	}
 }
 
-#body #title > .container {
-    position: absolute;
-}
-
-#body #title > .container {}
 
 .pace {
 	-webkit-pointer-events: none;
@@ -109,6 +135,7 @@ body {
 
 
 #header {
+	/* border-bottom: 5px solid #FFFFFF; */
 	line-height: 1.2em; height: 1.2em;
 	text-align: right;
 	position: fixed;
@@ -192,11 +219,11 @@ body {
 }
 #header #nav {
 	vertical-align: middle;
-	border-color: #CCAA33;
 	background: #CCAA33;
 	position: absolute;
 	display: block;
 	color: #FFFFFF;
+	height: 100%;
 	bottom: 0;
 	right: 0;
 	left: 0;
@@ -209,14 +236,16 @@ body {
 	font-size: 0.3125em; /* 1.0 / 3.2 */
 	padding: 0 0.3125em;
 	height: 3.84em;
+	height: 100%;
 }
 #header #nav > li > a {
-	border-width: 0 0 0.3125em 0;
+	/* border-width: 0 0 0.3125em 0; */
 	text-decoration: none;
-	border-color: #FFFFFF;
-	border-style: solid;
+	/* border-color: #FFFFFF; */
+	/* border-style: solid; */
 	padding: 0 0.3125em;
 	display: block;
+	height: 100%;
 }
 @media (min-width: 720px) {
 	#header #logo > .container i {

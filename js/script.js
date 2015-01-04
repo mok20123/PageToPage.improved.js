@@ -29,7 +29,7 @@ window.general = general;
 		//   animations are expected, call nxt after they are ended
 		window.ptpTransit.on("requeststart", function (ev, nxt) { // request events for contents // animation and request at the same time
 				$("#page").addClass("pvsp").css({"left": ((  0   * (-100 - 0))+ 0)+"%"});
-				$("#title > .container").addClass("pvsT").css({"top": 0+"%"});
+				$("#title > .container, #description > .container").addClass("pvsT").css({"top": 0+"%"});
 
 				animate({
 					delay: 1000/general.frameRate,
@@ -65,9 +65,9 @@ window.general = general;
 				$("#body > .container").append(
 					$("#page", $newPageDOM).addClass("nxtp").css({ left: 100+"%", opacity: 0 })
 				);
-				$("#title").append(
-					$("#title > .container", $newPageDOM).addClass("nxtT").css({ top: -100+"%" })
-				);
+				$("#title > .container, #description > .container", $newPageDOM).addClass("nxtT").css({ top: -100+"%" });
+				$("#description").append($("#description > .container", $newPageDOM));
+				$("#title").append($("#title > .container", $newPageDOM));
 
 				animate({
 					delay: 1000/general.frameRate,
@@ -78,6 +78,7 @@ window.general = general;
 // 						$(".nxtT").css({  top: ((delta * (0 - -100))+ -100)+"%" })
 
 						if (delta >= 1) {
+							$(".nxtp").removeClass("nxtp");
 							nxt();
 						}
 					}
@@ -89,7 +90,9 @@ window.general = general;
 					step: function(delta) {
 						$(".nxtT").css({  top: ((delta * (0 - -100))+ -100)+"%" })
 
-						if (delta >= 1) {}
+						if (delta >= 1) {
+							$(".nxtT").removeClass("nxtT");
+						}
 					}
 				});
 			})
@@ -243,7 +246,7 @@ $(#header #logo .bg > div:nth-of-type(1)
 
 
 	$("#page").css({ left: ((1-0)*100)+"%", opacity: 0 });
-	$("#title > .container").css({top: (-100)+"%" });
+	$("#title > .container, #description > .container").css({top: (-100)+"%" });
 
 	var ele = $("#header");
 	$(ele).css({top: (0-1) * $(ele).height()*1.2 });
@@ -268,7 +271,7 @@ $(#header #logo .bg > div:nth-of-type(1)
 		delta: makeEaseOut(delta.po5), // quad
 		func: function (delta) {
 			$("#page").css({ left: ((1-delta)*100)+"%", opacity: delta });
-			$("#title > .container").css({top: ((delta * (0 - -100))+ -100)+"%" });
+			$("#title > .container, #description > .container").css({top: ((delta * (0 - -100))+ -100)+"%" });
 		}
 	}, {
 		start: 0  +1000,
