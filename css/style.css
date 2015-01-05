@@ -31,7 +31,7 @@ code {
 
 body {
 	font-family: monospace;
-	font-family: "consolas";
+	font-family: "consolas", monospace;
 	background: #335566;
 	overflow-x: hidden;
 	font-size: 1em;
