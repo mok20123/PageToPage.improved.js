@@ -257,7 +257,7 @@ var PageToPage = function() {
 			request: function () {
 				// var data = helpers.XMLrequest(window.location.href);
 				// htmlRequestData    = data;
-				helpers.XMLrequestWECM(window.location.href, function(e) {
+				helpers.XMLrequestWE(window.location.href, function(e) {
 					console.log(e.loaded / e.total);
 					//receiving
 				}, function(e, xhr) {
