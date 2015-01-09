@@ -21,7 +21,6 @@ var _BGT = new Date();
 }());
 
 var PageToPage = function() {
-
 		var self = this;
 
 		var transiting         = false, // prevent jump page again while jumping page
@@ -47,14 +46,6 @@ var PageToPage = function() {
 			afterInit          = function () {},
 			pbf_pushState      = function () {},
 			pbf_onpoppushstate = function (state) {};
-
-
-		/*     Events
-		****************************** */
-		var pbf_onpoppushstate = function (state) { // final preprocess
-			console.log("arguments of history.pushState:", arguments, new Date() - _BGT);
-			pageProcess.start(state);
-		};
 
 
 		/*     Helper Functions
@@ -145,8 +136,22 @@ var PageToPage = function() {
 				handleNotSupport: function () {}*/
 			};
 
+
+		/*     Events
+		****************************** */
+		var pbf_onpoppushstate = function (state) { // final preprocess
+			console.log("arguments of history.pushState:", arguments, new Date() - _BGT);
+			pageProcess.start(state);
+		};
+
 		/*     handle events
 		****************************** */
+		var when = function (evtN, argsArray) {
+			var bindFuncs = events[evtN];
+			
+			for (var i = 0; i < bindFuncs.length; i++)
+				bindFuncs[i].apply(this, argsArray); // use apply instead
+		};
 		var asLinkClicked = function (e) { // action for link clicking
 			e.preventDefault(); e.stopPropagation();
 			helpers.pushState($(this).attr("href"));
@@ -173,20 +178,6 @@ var PageToPage = function() {
 			window.addEventListener( "popstate", pbf_onpoppushstate, false);
 		};
 
-		/*     handle events APIs
-		****************************** */
-		self.on = self.bind = function (event, bindFunc) {
-			if (bindFunc instanceof Function)
-				events[event].push(bindFunc);
-
-			return this;
-		};
-		var when = function (evtN, argsArray) {
-			var bindFuncs = events[evtN];
-			
-			for (var i = 0; i < bindFuncs.length; i++)
-				bindFuncs[i].apply(this, argsArray); // use apply instead
-		};
 
 		/*     handle settings
 		****************************** */
@@ -210,21 +201,22 @@ var PageToPage = function() {
 			return this;
 		};
 
+
 		/*     main
 		****************************** */
 		self.init = function (options) {
-			options = options || undefined;
-			self.settings(options);
+			if (options) self.settings(options);
 			detectLinks();
 			detectStateEvents();
-			
-			afterInit();
+			if (typeof afterInit == "function") afterInit();
 			
 			return this;
 		};
+
+
 		// '''''page processors (changer, animator & remover)'''''
 		var pageProcess = {
-			start: function () {
+			start: function () { // 空: そう、ゲーム始めよう！
 				if (transiting || lastReactedURL == window.location.href)
 					return;
 
@@ -261,6 +253,15 @@ var PageToPage = function() {
 		};
 		
 
+
+		/*     handle events APIs
+		****************************** */
+		self.on = self.bind = function (event, bindFunc) {
+			if (bindFunc instanceof Function)
+				events[event].push(bindFunc);
+
+			return this;
+		};
 
 		/*     API functions
 		****************************** */
