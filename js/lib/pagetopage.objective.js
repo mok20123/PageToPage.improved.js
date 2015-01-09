@@ -49,15 +49,6 @@ var PageToPage = function() {
 			pbf_onpoppushstate = function (state) {};
 
 
-		/*     history.pushState() redefinition
-		****************************** */
-		// (function (history) {
-		// 	var pushState = history.pushState;
-		// 	history.pushState = function (state) {
-		// 		return pushState.apply(history, arguments);
-		// 	};
-		// }(window.history));
-
 		/*     Events
 		****************************** */
 		var pbf_onpoppushstate = function (state) { // final preprocess
@@ -65,12 +56,11 @@ var PageToPage = function() {
 			pageProcess.start(state);
 		};
 
-			
+
 		/*     Helper Functions
 		****************************** */
 		var helpers            = {
-				matchHref: function (href) { 
-					// check if current location is the same as the passed one
+				matchHref: function (href) { // check if current location is the same as the passed one
 					return (window.location.href.match(href + "$"));
 				},
 				// XMLrequest: function (href) {
@@ -149,20 +139,10 @@ var PageToPage = function() {
 						history.pushState(state, null, href);
 						pbf_onpoppushstate({state: state, type: "pushstate"});
 					}
-				},
+				}/*,
 				// '''''support changing'''''
-				checkSupports: function (theSupports) { 
-					// ["history.pushState"]
-					
-					if (!history.pushState) {
-						console.log("Your browser doesn't support page to page transition.");
-					}
-					
-					return /*0//*/history.pushState?1:0;
-				},
-				handleNotSupport: function (theSupports) {
-					return /*0//*/history.pushState?1:0;
-				}
+				checkSupports: function () {},
+				handleNotSupport: function () {}*/
 			};
 
 		/*     handle events
@@ -217,8 +197,7 @@ var PageToPage = function() {
 					afterInit: function() {},
 					reactLinksQuery: "", // string [CSS Query], i.e.: "a:not(.externalLink)""
 					reactLinkElements: null // NodeList or Array of Elements
-				};
-				// options = options || defaultSettings;
+				}; // options = options || defaultSettings;
 
 				for (var prop in defaultSettings)
 					options[prop] = options[prop] || defaultSettings[prop];
@@ -245,7 +224,7 @@ var PageToPage = function() {
 		};
 		// '''''page processors (changer, animator & remover)'''''
 		var pageProcess = {
-			start: function () { // 空: そう、ゲーム始めよう！
+			start: function () {
 				if (transiting || lastReactedURL == window.location.href)
 					return;
 
@@ -259,15 +238,10 @@ var PageToPage = function() {
 				// htmlRequestData    = data;
 				helpers.XMLrequestWE(window.location.href, function(e) {
 					console.log(e.loaded / e.total);
-					//receiving
+					// receiving
 				}, function(e, xhr) {
 					pageProcess.receive(xhr);
 				});
-
-				// if (data && (data.status >= 200 && data.status < 300))
-				// 	setTimeout(pageProcess.received);
-				// else 
-				// 	when("requesterror", [{}, (data || null)]);
 			},
 			receive: function (data) {
 				htmlRequestData = data;
@@ -302,6 +276,15 @@ var PageToPage = function() {
 //       PageToPageObjective   = PageToPage         ;
 //window.PageToPage            = PageToPage         ;
 //window.PageToPageObjective   = PageToPageObjective;
+
+		/*     history.pushState() redefinition
+		****************************** */
+		// (function (history) {
+		// 	var pushState = history.pushState;
+		// 	history.pushState = function (state) {
+		// 		return pushState.apply(history, arguments);
+		// 	};
+		// }(window.history));
 
 window.PageToPageObjective = PageToPageObjective = window.PageToPage = PageToPage;
 
