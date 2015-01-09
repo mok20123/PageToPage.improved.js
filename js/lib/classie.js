@@ -39,9 +39,8 @@
 			return classReg(c).test(elem.className);
 		};
 		addClass = function (elem, c) {
-			if (!hasClass(elem, c)) {
+			if (!hasClass(elem, c))
 				elem.className = elem.className + ' ' + c;
-			}
 		};
 		removeClass = function (elem, c) {
 			elem.className = elem.className.replace(classReg(c), ' ');
@@ -59,6 +58,7 @@
 		addClass: addClass,
 		removeClass: removeClass,
 		toggleClass: toggleClass,
+
 		// short names
 		has: hasClass,
 		add: addClass,
@@ -67,10 +67,9 @@
 	};
 
 	// transport
-	if (typeof define === 'function' && define.amd) {
+	if (typeof define === 'function' && define.amd)
 		define(classie);
-	} else {
+	else
 		window.classie = classie;
-	}
 
 }(window));
