@@ -360,17 +360,18 @@ body {
 
 
 .pace .pace-activity {
-  display: block;
-  position: fixed;
-  z-index: 2000;
-  top: 15px;
-  right: 15px;
-  width: 14px;
-  height: 14px;
   border: solid 2px transparent;
-  border-top-color: #29d;
   border-left-color: #29d;
+  border-top-color: #29d;
   border-radius: 10px;
+  margin-left: -7px;
+  position: fixed;
+  display: block;
+  z-index: 2000;
+  height: 14px;
+  width: 14px;
+  left: 50%;
+  top: 15px;
   -webkit-animation: pace-spinner 400ms linear infinite;
   -moz-animation: pace-spinner 400ms linear infinite;
   -ms-animation: pace-spinner 400ms linear infinite;
