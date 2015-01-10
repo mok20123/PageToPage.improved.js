@@ -374,11 +374,11 @@ body {
   left: 50%;
   top: 15px;
   top: 29px;
-  -webkit-animation: pace-spinner 400ms linear infinite;
-  -moz-animation: pace-spinner 400ms linear infinite;
-  -ms-animation: pace-spinner 400ms linear infinite;
-  -o-animation: pace-spinner 400ms linear infinite;
-  animation: pace-spinner 400ms linear infinite;
+  -webkit-animation: pace-spinner 750ms linear infinite;
+  -moz-animation: pace-spinner 750ms linear infinite;
+  -ms-animation: pace-spinner 750ms linear infinite;
+  -o-animation: pace-spinner 750ms linear infinite;
+  animation: pace-spinner 750ms linear infinite;
 }
 
 @-webkit-keyframes pace-spinner {
